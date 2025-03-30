@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from '@/context/ThemeContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 function debounce<T extends (...args: any[]) => any>(
   func: T,
@@ -88,8 +89,27 @@ export default function Navigation() {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
-            WEB Revamp
+          <Link href="/" className="flex items-center space-x-2 group">
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative w-8 h-8 md:w-10 md:h-10"
+            >
+              <Image
+                src="/img/image-logo.png"
+                alt="WEB Revamp Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </motion.div>
+            <motion.span
+              className="hidden sm:block text-xl md:text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              WEB Revamp
+            </motion.span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -144,8 +164,34 @@ export default function Navigation() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? '✕' : '☰'}
+            <motion.div
+              animate={isMobileMenuOpen ? "open" : "closed"}
+              className="w-6 h-6 flex flex-col justify-center items-center"
+            >
+              <motion.span
+                variants={{
+                  closed: { rotate: 0, y: 0 },
+                  open: { rotate: 45, y: 8 }
+                }}
+                className="w-6 h-0.5 bg-current block mb-1.5"
+              />
+              <motion.span
+                variants={{
+                  closed: { opacity: 1 },
+                  open: { opacity: 0 }
+                }}
+                className="w-6 h-0.5 bg-current block mb-1.5"
+              />
+              <motion.span
+                variants={{
+                  closed: { rotate: 0, y: 0 },
+                  open: { rotate: -45, y: -8 }
+                }}
+                className="w-6 h-0.5 bg-current block"
+              />
+            </motion.div>
           </motion.button>
         </div>
 

@@ -23,7 +23,7 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="relative py-32 overflow-hidden">
+    <section className="relative py-16 sm:py-24 md:py-32 overflow-hidden">
       {/* Modern gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20">
         {/* Animated gradient circles */}
@@ -40,16 +40,16 @@ export default function Newsletter() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 mb-8">
-              <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
+            <span className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 mb-6 sm:mb-8">
+              <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
               </svg>
               Newsletter
             </span>
-            <h2 className="text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 sm:text-6xl">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
               Stay Updated with My Journey
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed px-4">
               Get weekly insights on web development, tech trends, and personal growth.
               Join a community of developers and tech enthusiasts.
             </p>
@@ -60,16 +60,16 @@ export default function Newsletter() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-12 max-w-xl mx-auto"
+            className="mt-8 sm:mt-12 max-w-xl mx-auto px-4"
           >
             <div 
               className="relative group"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
-              <div className="relative bg-white dark:bg-gray-800/90 backdrop-blur-xl rounded-2xl shadow-2xl p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl sm:rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
+              <div className="relative bg-white dark:bg-gray-800/90 backdrop-blur-xl rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-8">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                   <div className="relative">
                     <label htmlFor="email" className="sr-only">
                       Email address
@@ -81,7 +81,7 @@ export default function Newsletter() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="block w-full rounded-xl border-2 border-gray-200 dark:border-gray-600 px-5 py-4 bg-white/50 dark:bg-gray-700/50 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
+                      className="block w-full rounded-lg sm:rounded-xl border-2 border-gray-200 dark:border-gray-600 px-4 sm:px-5 py-3 sm:py-4 bg-white/50 dark:bg-gray-700/50 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 text-sm sm:text-base"
                       placeholder="Enter your email address"
                     />
                   </div>
@@ -94,11 +94,11 @@ export default function Newsletter() {
                     <button
                       type="submit"
                       disabled={status === 'loading'}
-                      className="w-full inline-flex items-center justify-center px-6 py-4 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
+                      className="w-full inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 border border-transparent text-sm sm:text-base font-medium rounded-lg sm:rounded-xl text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
                     >
                       {status === 'loading' ? (
                         <span className="flex items-center">
-                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <svg className="animate-spin -ml-1 mr-2 h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                           </svg>
@@ -107,7 +107,7 @@ export default function Newsletter() {
                       ) : (
                         <>
                           Subscribe to Newsletter
-                          <svg className="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                          <svg className="ml-2 -mr-1 w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                           </svg>
                         </>
@@ -120,10 +120,10 @@ export default function Newsletter() {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-4 p-4 bg-green-50/50 dark:bg-green-900/30 rounded-xl border border-green-200 dark:border-green-800"
+                    className="mt-3 sm:mt-4 p-3 sm:p-4 bg-green-50/50 dark:bg-green-900/30 rounded-lg sm:rounded-xl border border-green-200 dark:border-green-800"
                   >
-                    <p className="text-sm text-green-600 dark:text-green-400 flex items-center">
-                      <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <p className="text-xs sm:text-sm text-green-600 dark:text-green-400 flex items-center">
+                      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
                       Thanks! Check your email to confirm your subscription.
@@ -139,7 +139,7 @@ export default function Newsletter() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="mt-12 flex flex-wrap justify-center gap-6"
+            className="mt-8 sm:mt-12 flex flex-wrap justify-center gap-3 sm:gap-6 px-4"
           >
             {[
               { icon: '📨', text: 'Weekly Updates' },
@@ -149,10 +149,10 @@ export default function Newsletter() {
               <motion.div
                 key={feature.text}
                 whileHover={{ scale: 1.05 }}
-                className="flex items-center space-x-2 px-4 py-2 bg-white/50 dark:bg-gray-800/50 rounded-full shadow-sm"
+                className="flex items-center space-x-1.5 sm:space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/50 dark:bg-gray-800/50 rounded-full shadow-sm"
               >
-                <span className="text-xl">{feature.icon}</span>
-                <span className="text-sm font-medium text-gray-800 dark:text-gray-200">{feature.text}</span>
+                <span className="text-base sm:text-xl">{feature.icon}</span>
+                <span className="text-xs sm:text-sm font-medium text-gray-800 dark:text-gray-200">{feature.text}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -162,14 +162,14 @@ export default function Newsletter() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
-            className="mt-12 flex items-center justify-center space-x-4"
+            className="mt-8 sm:mt-12 flex items-center justify-center space-x-3 sm:space-x-4 px-4"
           >
-            <div className="flex -space-x-2">
+            <div className="flex -space-x-1.5 sm:-space-x-2">
               {[...Array(3)].map((_, i) => (
-                <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 border-2 border-white dark:border-gray-800" />
+                <div key={i} className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 border-2 border-white dark:border-gray-800" />
               ))}
             </div>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
               Join{' '}
               <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
                 1,000+ subscribers

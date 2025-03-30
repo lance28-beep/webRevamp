@@ -43,10 +43,10 @@ export default function Hero() {
       />
 
       <div className="content-container min-h-screen flex flex-col justify-center relative z-10">
-        <div className="flex flex-col items-center text-center pt-32 pb-16">
+        <div className="flex flex-col items-center text-center pt-20 md:pt-32 pb-8 md:pb-16 px-4">
           {/* Logo/Mascot with enhanced animation */}
           <motion.div 
-            className="relative w-48 h-48 mb-12"
+            className="relative w-32 h-32 md:w-48 md:h-48 mb-8 md:mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -60,14 +60,14 @@ export default function Hero() {
                 className="drop-shadow-xl"
                 priority
                 quality={90}
-                sizes="(max-width: 768px) 100vw, 192px"
+                sizes="(max-width: 768px) 128px, 192px"
               />
             </div>
           </motion.div>
 
           {/* Main Heading with enhanced animation */}
           <motion.h1 
-            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-[#f26c1a] via-purple-600 to-pink-600 text-transparent bg-clip-text"
+            className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-[#f26c1a] via-purple-600 to-pink-600 text-transparent bg-clip-text"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -76,73 +76,96 @@ export default function Hero() {
           </motion.h1>
           
           <motion.p 
-            className="text-xl md:text-2xl text-neutral-600 dark:text-gray-300 mb-12 max-w-2xl"
+            className="text-lg sm:text-xl md:text-2xl text-neutral-600 dark:text-gray-300 mb-4 md:mb-6 max-w-2xl px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            Calling all creatives, web warriors, and biz owners! 👋
+            Your Gateway to Web Design Inspiration & Free Website Features
           </motion.p>
+
+          <motion.div
+            className="max-w-2xl mx-auto text-center mb-8 md:mb-12 px-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+          >
+            <p className="text-sm sm:text-base md:text-lg text-neutral-600 dark:text-gray-300 mb-3 md:mb-4">
+              Welcome to WEB Revamp - your go-to platform for web design inspiration and free website features! We showcase the best in web design while offering selected businesses and individuals the chance to get their websites designed and featured on our blog.
+            </p>
+            <p className="text-sm sm:text-base md:text-lg text-neutral-600 dark:text-gray-300">
+              Submit your project for a chance to be featured and get a free professional website design that will inspire others. Perfect for students, businesses, and creative professionals looking to make their mark online.
+            </p>
+          </motion.div>
 
           {/* Features List with enhanced card design */}
           <motion.div 
-            className="card backdrop-blur-sm bg-white/90 dark:bg-gray-900/90 w-full max-w-2xl mb-12 border border-gray-100 dark:border-gray-800 rounded-2xl shadow-xl p-8"
+            className="card backdrop-blur-sm bg-white/90 dark:bg-gray-900/90 w-full max-w-2xl mb-8 md:mb-12 border border-gray-100 dark:border-gray-800 rounded-xl md:rounded-2xl shadow-xl p-4 md:p-8 mx-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
           >
-            <h2 className="text-2xl font-bold mb-8 bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
-              Whether you're here to...
+            <h2 className="text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
+              What We Offer
             </h2>
-            <ul className="feature-list space-y-6">
+            <ul className="feature-list space-y-4 md:space-y-6">
               <motion.li 
-                className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                className="flex items-start space-x-3 md:space-x-4 p-3 md:p-4 rounded-lg md:rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
                 whileHover={{ x: 10 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <span className="text-3xl">🎓</span>
-                <p className="text-lg">Learn web design tips</p>
+                <span className="text-2xl md:text-3xl mt-1">✍️</span>
+                <div>
+                  <p className="text-base md:text-lg font-medium">Design Blog & Inspiration</p>
+                  <p className="text-xs md:text-sm text-neutral-600 dark:text-gray-400">Weekly articles, tips, and showcases of amazing web designs</p>
+                </div>
               </motion.li>
               <motion.li 
-                className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                className="flex items-start space-x-3 md:space-x-4 p-3 md:p-4 rounded-lg md:rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
                 whileHover={{ x: 10 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <span className="text-3xl">💡</span>
-                <p className="text-lg">Get inspired by pro revamps</p>
+                <span className="text-2xl md:text-3xl mt-1">🎨</span>
+                <div>
+                  <p className="text-base md:text-lg font-medium">Free Website Design Program</p>
+                  <p className="text-xs md:text-sm text-neutral-600 dark:text-gray-400">Selected projects get free professional website design</p>
+                </div>
               </motion.li>
               <motion.li 
-                className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                className="flex items-start space-x-3 md:space-x-4 p-3 md:p-4 rounded-lg md:rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
                 whileHover={{ x: 10 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <span className="text-3xl">🌟</span>
-                <p className="text-lg">Promote your business FOR FREE</p>
+                <span className="text-2xl md:text-3xl mt-1">📚</span>
+                <div>
+                  <p className="text-base md:text-lg font-medium">Learning Resources</p>
+                  <p className="text-xs md:text-sm text-neutral-600 dark:text-gray-400">Tutorials, code snippets, and design best practices</p>
+                </div>
               </motion.li>
               <motion.li 
-                className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                className="flex items-start space-x-3 md:space-x-4 p-3 md:p-4 rounded-lg md:rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
                 whileHover={{ x: 10 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <span className="text-3xl">💻</span>
-                <p className="text-lg">Or just geek out over sleek websites</p>
+                <span className="text-2xl md:text-3xl mt-1">🤝</span>
+                <div>
+                  <p className="text-base md:text-lg font-medium">Community Features</p>
+                  <p className="text-xs md:text-sm text-neutral-600 dark:text-gray-400">Get featured, share insights, and connect with other creators</p>
+                </div>
               </motion.li>
             </ul>
-            <p className="mt-8 text-lg text-neutral-600 dark:text-gray-300 font-medium">
-              You're in the right place! ✨
-            </p>
           </motion.div>
 
           {/* CTA Buttons with enhanced design */}
           <motion.div 
-            className="flex flex-wrap justify-center gap-4 w-full max-w-2xl mx-auto mb-16"
+            className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 w-full max-w-2xl mx-auto mb-8 md:mb-16 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
           >
-            <Link href="#submit-project" className="flex-1 min-w-[200px]">
+            <Link href="#submit-project" className="w-full sm:flex-1">
               <motion.button 
-                className="btn-primary w-full group whitespace-nowrap transform transition-all duration-300 hover:scale-105 active:scale-95 rounded-xl py-4 px-8 text-lg font-semibold"
+                className="btn-primary w-full group whitespace-nowrap transform transition-all duration-300 hover:scale-105 active:scale-95 rounded-lg md:rounded-xl py-3 md:py-4 px-6 md:px-8 text-base md:text-lg font-semibold"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -152,9 +175,9 @@ export default function Hero() {
                 </span>
               </motion.button>
             </Link>
-            <Link href="#features" className="flex-1 min-w-[200px]">
+            <Link href="#features" className="w-full sm:flex-1">
               <motion.button 
-                className="btn-secondary w-full group whitespace-nowrap transform transition-all duration-300 hover:scale-105 active:scale-95 rounded-xl py-4 px-8 text-lg font-semibold"
+                className="btn-secondary w-full group whitespace-nowrap transform transition-all duration-300 hover:scale-105 active:scale-95 rounded-lg md:rounded-xl py-3 md:py-4 px-6 md:px-8 text-base md:text-lg font-semibold"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -168,7 +191,7 @@ export default function Hero() {
 
           {/* Social Media Links with enhanced design */}
           <motion.div 
-            className="social-links-container backdrop-blur-sm bg-white/80 dark:bg-gray-900/80 p-2 sm:p-4 rounded-full border border-gray-100 dark:border-gray-800 shadow-lg"
+            className="social-links-container backdrop-blur-sm bg-white/80 dark:bg-gray-900/80 p-2 sm:p-4 rounded-full border border-gray-100 dark:border-gray-800 shadow-lg mx-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}

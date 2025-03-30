@@ -29,16 +29,16 @@ const technologies = [
 
 const TechStackMarquee = () => {
   return (
-    <div className="w-full overflow-hidden bg-gradient-to-r from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 py-12">
+    <div className="w-full overflow-hidden bg-gradient-to-r from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 py-6 sm:py-8 md:py-12">
       <div className="relative flex">
         {/* First set of items */}
         <motion.div 
-          className="flex items-center space-x-12"
+          className="flex items-center space-x-4 sm:space-x-8 md:space-x-12"
           animate={{
             x: [0, -1000],
           }}
           transition={{
-            duration: 20,
+            duration: 30, // Slower on mobile for better readability
             repeat: Infinity,
             ease: "linear",
           }}
@@ -46,22 +46,21 @@ const TechStackMarquee = () => {
           {technologies.map((tech, index) => (
             <motion.div
               key={`first-${index}`}
-              className="flex items-center space-x-3 px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              className="flex items-center space-x-2 sm:space-x-3 px-3 sm:px-4 md:px-6 py-2 sm:py-3 bg-white dark:bg-gray-800 rounded-full shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 min-w-max"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="relative w-8 h-8">
+              <div className="relative w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8">
                 <Image
                   src={tech.icon}
                   alt={tech.name}
-                  width={32}
-                  height={32}
+                  fill
                   className="object-contain"
                   loading="lazy"
-                  sizes="32px"
+                  sizes="(max-width: 640px) 24px, (max-width: 768px) 28px, 32px"
                 />
               </div>
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
                 {tech.name}
               </span>
             </motion.div>
@@ -70,12 +69,12 @@ const TechStackMarquee = () => {
 
         {/* Duplicate set of items for seamless loop */}
         <motion.div 
-          className="flex items-center space-x-12"
+          className="flex items-center space-x-4 sm:space-x-8 md:space-x-12"
           animate={{
             x: [0, -1000],
           }}
           transition={{
-            duration: 20,
+            duration: 30,
             repeat: Infinity,
             ease: "linear",
           }}
@@ -83,28 +82,40 @@ const TechStackMarquee = () => {
           {technologies.map((tech, index) => (
             <motion.div
               key={`second-${index}`}
-              className="flex items-center space-x-3 px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              className="flex items-center space-x-2 sm:space-x-3 px-3 sm:px-4 md:px-6 py-2 sm:py-3 bg-white dark:bg-gray-800 rounded-full shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 min-w-max"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="relative w-8 h-8">
+              <div className="relative w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8">
                 <Image
                   src={tech.icon}
                   alt={tech.name}
-                  width={32}
-                  height={32}
+                  fill
                   className="object-contain"
                   loading="lazy"
-                  sizes="32px"
+                  sizes="(max-width: 640px) 24px, (max-width: 768px) 28px, 32px"
                 />
               </div>
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
                 {tech.name}
               </span>
             </motion.div>
           ))}
         </motion.div>
       </div>
+
+      <style jsx>{`
+        @media (max-width: 640px) {
+          .animate-marquee {
+            animation-duration: 30s;
+          }
+        }
+        @media (min-width: 641px) {
+          .animate-marquee {
+            animation-duration: 20s;
+          }
+        }
+      `}</style>
     </div>
   );
 };

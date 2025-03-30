@@ -1,26 +1,256 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100% / 1;
+    --foreground: 222.2 84% 4.9% / 1;
+    --card: 0 0% 100% / 1;
+    --card-foreground: 222.2 84% 4.9% / 1;
+    --popover: 0 0% 100% / 1;
+    --popover-foreground: 222.2 84% 4.9% / 1;
+    --primary: 262.1 83.3% 57.8% / 1;
+    --primary-foreground: 210 40% 98% / 1;
+    --secondary: 210 40% 96.1% / 1;
+    --secondary-foreground: 222.2 47.4% 11.2% / 1;
+    --muted: 210 40% 96.1% / 1;
+    --muted-foreground: 215.4 16.3% 46.9% / 1;
+    --accent: 210 40% 96.1% / 1;
+    --accent-foreground: 222.2 47.4% 11.2% / 1;
+    --destructive: 0 84.2% 60.2% / 1;
+    --destructive-foreground: 210 40% 98% / 1;
+    --border: 214.3 31.8% 91.4% / 1;
+    --input: 214.3 31.8% 91.4% / 1;
+    --ring: 262.1 83.3% 57.8% / 1;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9% / 1;
+    --foreground: 210 40% 98% / 1;
+    --card: 222.2 84% 4.9% / 1;
+    --card-foreground: 210 40% 98% / 1;
+    --popover: 222.2 84% 4.9% / 1;
+    --popover-foreground: 210 40% 98% / 1;
+    --primary: 262.1 83.3% 57.8% / 1;
+    --primary-foreground: 210 40% 98% / 1;
+    --secondary: 217.2 32.6% 17.5% / 1;
+    --secondary-foreground: 210 40% 98% / 1;
+    --muted: 217.2 32.6% 17.5% / 1;
+    --muted-foreground: 215 20.2% 65.1% / 1;
+    --accent: 217.2 32.6% 17.5% / 1;
+    --accent-foreground: 210 40% 98% / 1;
+    --destructive: 0 62.8% 30.6% / 1;
+    --destructive-foreground: 210 40% 98% / 1;
+    --border: 217.2 32.6% 17.5% / 1;
+    --input: 217.2 32.6% 17.5% / 1;
+    --ring: 262.1 83.3% 57.8% / 1;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Button styles */
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-lg 
+           hover:from-purple-700 hover:to-pink-700 transition-all duration-200 
+           shadow-lg hover:shadow-xl hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium rounded-lg 
+           border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 
+           transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-card dark:bg-card-foreground p-8 rounded-2xl shadow-lg 
+           transition-transform duration-200 hover:scale-[1.02];
+  }
+
+  .hover-card {
+    @apply transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  /* Navigation styles */
+  .nav-link {
+    @apply relative text-neutral-600 dark:text-gray-300 
+           transition-all duration-200 px-4 py-2 font-medium
+           hover:text-[#f26c1a] dark:hover:text-[#f26c1a];
+  }
+
+  .nav-link::after {
+    @apply content-[''] absolute left-0 bottom-0 w-0 h-0.5 
+           bg-[#f26c1a] dark:bg-[#f26c1a] 
+           transition-all duration-200 ease-out;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  /* Feature list styles */
+  .feature-list {
+    @apply space-y-4;
+  }
+
+  .feature-list li {
+    @apply flex items-center space-x-3 text-gray-600 dark:text-gray-300;
+  }
+
+  .feature-list li span:first-child {
+    @apply text-2xl;
+  }
+
+  /* Social media styles */
+  .social-links-container {
+    @apply flex justify-center space-x-6;
+  }
+
+  .social-link {
+    @apply text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 transition-colors;
+  }
+
+  .social-icon {
+    @apply w-6 h-6 transition-transform duration-200;
+  }
+
+  /* Social media brand colors */
+  .social-link[aria-label="Facebook"]:hover {
+    @apply text-[#1877f2] dark:text-[#1877f2]
+           border-[#1877f2]/20 dark:border-[#1877f2]/10
+           shadow-[#1877f2]/5;
+  }
+
+  .social-link[aria-label="Instagram"]:hover {
+    @apply text-[#e4405f] dark:text-[#e4405f]
+           border-[#e4405f]/20 dark:border-[#e4405f]/10
+           shadow-[#e4405f]/5;
+  }
+
+  .social-link[aria-label="TikTok"]:hover {
+    @apply text-black dark:text-white
+           border-black/20 dark:border-white/10
+           shadow-black/5 dark:shadow-white/5;
+  }
+
+  .social-link[aria-label="YouTube"]:hover {
+    @apply text-[#ff0000] dark:text-[#ff0000]
+           border-[#ff0000]/20 dark:border-[#ff0000]/10
+           shadow-[#ff0000]/5;
+  }
+
+  .social-link[aria-label="X (Twitter)"]:hover {
+    @apply text-black dark:text-white
+           border-black/20 dark:border-white/10
+           shadow-black/5 dark:shadow-white/5;
+  }
+
+  .social-link[aria-label="LinkedIn"]:hover {
+    @apply text-[#0a66c2] dark:text-[#0a66c2]
+           border-[#0a66c2]/20 dark:border-[#0a66c2]/10
+           shadow-[#0a66c2]/5;
+  }
+
+  .social-link:active {
+    @apply transform scale-95 shadow-sm;
+  }
+
+  /* Container and spacing */
+  .content-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-spacing {
+    @apply py-20 px-4;
+  }
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+/* Smooth dark mode transitions */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom scrollbar for light mode */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400;
+}
+
+/* Custom scrollbar for dark mode */
+.dark ::-webkit-scrollbar-track {
+  @apply bg-gray-800;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-gray-700 hover:bg-gray-600;
+}
+
+/* Glass effect */
+.glass {
+  @apply bg-white/10 dark:bg-gray-800/10 backdrop-blur-lg border border-white/20 dark:border-gray-700/30;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600 
+         dark:from-purple-400 dark:to-pink-400;
 }

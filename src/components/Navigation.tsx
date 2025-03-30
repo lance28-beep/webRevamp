@@ -79,7 +79,7 @@ export default function Navigation() {
 
   return (
     <motion.nav 
-      className={`fixed w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full z-[100] transition-all duration-300 ${
         isScrolled ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
@@ -105,7 +105,9 @@ export default function Navigation() {
                   className={`${
                     isActive(item.path)
                       ? 'text-purple-600 dark:text-purple-400 font-semibold'
-                      : 'text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400'
+                      : isScrolled 
+                        ? 'text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400'
+                        : 'text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400'
                   } transition-colors duration-200 relative group`}
                 >
                   {item.name}
@@ -120,7 +122,11 @@ export default function Navigation() {
             ))}
             <motion.button
               onClick={toggleDarkMode}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+              className={`p-2 rounded-full transition-colors duration-200 ${
+                isScrolled 
+                  ? 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200' 
+                  : 'hover:bg-gray-100/10 text-gray-700 dark:text-gray-200'
+              }`}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -130,7 +136,11 @@ export default function Navigation() {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+            className={`md:hidden p-2 rounded-lg transition-colors duration-200 ${
+              isScrolled 
+                ? 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200' 
+                : 'hover:bg-gray-100/10 text-gray-700 dark:text-gray-200'
+            }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -142,41 +152,73 @@ export default function Navigation() {
         {/* Mobile Navigation */}
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <motion.div
-              className="md:hidden py-4 space-y-4"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              {navItems.map((item) => (
-                <motion.div
-                  key={item.path}
-                  whileHover={{ x: 10 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <Link
-                    href={item.path}
-                    className={`block ${
-                      isActive(item.path)
-                        ? 'text-purple-600 dark:text-purple-400 font-semibold'
-                        : 'text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400'
-                    } transition-colors duration-200 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.button
-                onClick={toggleDarkMode}
-                className="w-full text-left p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-200"
-                whileHover={{ x: 10 }}
-                transition={{ type: "spring", stiffness: 300 }}
+            <>
+              {/* Backdrop */}
+              <motion.div
+                className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[90] md:hidden"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsMobileMenuOpen(false)}
+              />
+              {/* Menu */}
+              <motion.div
+                className="fixed top-0 right-0 h-screen w-64 bg-white dark:bg-gray-900 shadow-xl z-[110] md:hidden"
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ type: "spring", damping: 20 }}
               >
-                {isDarkMode ? '🌞 Light Mode' : '🌙 Dark Mode'}
-              </motion.button>
-            </motion.div>
+                <div className="flex flex-col h-full">
+                  {/* Header */}
+                  <div className="sticky top-0 flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+                    <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
+                      Menu
+                    </span>
+                    <button
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-white"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                  
+                  {/* Menu Items */}
+                  <div className="flex-1 p-4 space-y-2 overflow-y-auto">
+                    {navItems.map((item) => (
+                      <motion.div
+                        key={item.path}
+                        whileHover={{ x: 10 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <Link
+                          href={item.path}
+                          className={`block ${
+                            isActive(item.path)
+                              ? 'text-purple-600 dark:text-purple-400 font-semibold'
+                              : 'text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400'
+                          } transition-colors duration-200 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50`}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
+                      </motion.div>
+                    ))}
+                    <motion.button
+                      onClick={() => {
+                        toggleDarkMode();
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="w-full text-left p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-200 text-gray-700 dark:text-gray-200"
+                      whileHover={{ x: 10 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      {isDarkMode ? '🌞 Light Mode' : '🌙 Dark Mode'}
+                    </motion.button>
+                  </div>
+                </div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </div>
